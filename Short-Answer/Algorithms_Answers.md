@@ -34,9 +34,9 @@ def egg_drop(n, f):
     mid = len(n) // 2
     x = n[:mid]
     y = n[mid:]
-    if f in x:
+    if f <= x[-1]:
       return egg_drop2(x, f)
-    elif f in y:
+    elif f >= y[0]:
       return egg_drop2(y, f)
     else:
       return "Floor not in building"
