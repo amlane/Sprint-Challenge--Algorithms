@@ -14,3 +14,30 @@ This is a recursive solution that is looping based on the number of bunnies. Dep
 We can test this by increasing our number of inputs and checking how many times the function is called. If we input 2 bunnies, we see the function is called 2 times. If we input 4, we see the function is called 4 times. Same with 10 bunnies, we loop the function 10 times.
 
 ## Exercise II
+
+I'm assuming n is a list of floors, and I'll have a 2nd argument that is the floor where the egg will crack.
+Check the length of n. If it's less than or equal to 1 return the value of n
+Find the halfway point in your list.
+Break the list at the halfway point into 2 lists.
+If the floor we are looking for is in the first list, call the egg drop function and start the process again with the first half of the list.
+If the floor we are looking for is the second list, call the egg drop function and start the process again with the second half of the list.
+
+Runtime: O(n log n). Even though I'm using recursion, because we are halving the inputs everytime we call the function, it's very efficient. I ran my code at 100 floors vs. 50,000 floors and the function ran 8 times vs 17 times, respectively. This shows us that even though the difference in inputs is great, the rate of our runtime is not growing at the same rate of our input. It is growing some though which is why it cannot be O(n).
+
+Code:
+
+```python
+def egg_drop(n, f):
+    if len(n) <= 1:
+      return n
+    #divide the floors into two halves until the output is less than f
+    mid = len(n) // 2
+    x = n[:mid]
+    y = n[mid:]
+    if f in x:
+      return egg_drop2(x, f)
+    elif f in y:
+      return egg_drop2(y, f)
+    else:
+      return "Floor not in building"
+```
