@@ -11,13 +11,10 @@ def count_th(word):
         return 0
     # start with the indexes 0 and 1
     # split the word into a list
-    x = list(word)
 
-    if x[0] == "t" and x[1] == "h":
-        x.remove(x[0])
-        return 1 + count_th("".join(x))
+    if word[:2] == "th":
+        return 1 + count_th(word[2:])
     else:
-        x.remove(x[0])
-        return 0 + count_th("".join(x))
+        return 0 + count_th(word[1:])
 
 # This is a O(n) solution since the loop will run as many times as the length of n.
